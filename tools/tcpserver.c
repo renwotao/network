@@ -10,7 +10,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "skel.h"
+#include "../framework/skel.h"
 
 char *program_name;
 
