@@ -1,2 +1,0 @@
-SET(SRC_LIST tcpserver.c
-    framework/
