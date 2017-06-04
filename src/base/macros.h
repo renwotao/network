@@ -1,5 +1,5 @@
-#ifndef __SKEL_H__
-#define __SKEL_H__
+#ifndef __MACROS_H__
+#define __MACROS_H__
 
 /* UNIX version */
 #define INIT()          ( program_name = \
