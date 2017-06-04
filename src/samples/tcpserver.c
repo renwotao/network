@@ -10,7 +10,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "framework/skel.h"
+
+#include "macros.h"
+#include "set_address.h"
 
 char *program_name;
 

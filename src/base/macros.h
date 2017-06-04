@@ -12,5 +12,9 @@
 #define set_errno(e)    errno = ( e )
 #define isvalidsock(s)  ( ( s ) >= 0 )
 
-typedef int SOCKET;
+
+#define NULL 0
+
+#define NLISTEN 5
+
 #endif /* __SKEL_H__ */ 

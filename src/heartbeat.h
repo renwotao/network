@@ -3,12 +3,12 @@
 
 #define MSG_TYPE1	1	/* application specific msg */
 #define MSG_TYPE2	2	/* another one */
-#define MSG_TYPE3 	3	/* heartbeat message */
+#define MSG_HEARTBEAT 	3	/* heartbeat message */
 
 typedef struct			/* message structure */
 {
-	u_int32_t type;		/* MSG_TYPE1, ... */
-	char data[ 2000 ];
+	unsigned int type;		/* MSG_TYPE1, ... */
+	char data[2000];
 } msg_t;
 
 #define T1 		60	/* idle time before heartbeat */

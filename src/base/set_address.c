@@ -3,7 +3,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include "etcp.h"
+
+#include "macros.h"
+#include "set_address.h"
 
 static void set_address(char *hname, char *sname,
     struct sockaddr_in *sap, char *protocol)
@@ -30,7 +32,7 @@ static void set_address(char *hname, char *sname,
     else {
         sp = getservbyname(sname, protocol);
         if (sp == NULL)
-            error(1, 0, "unknown service: %s\n", shame);
+            error(1, 0, "unknown service: %s\n", sname);
         sap->sin_port = sp->s_port;
     }
 }

@@ -1,5 +1,7 @@
-#include "etcp.h"
+#include "base/macros.h"
 #include "heartbeat.h"
+
+char *program_name;
 
 int main(int argc, char **argv)
 {

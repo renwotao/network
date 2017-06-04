@@ -1,8 +1,0 @@
-SET(SRC_LIST tcpserver.c)
-
-ADD_EXECUTABLE(network ${SRC_LIST})
-
-INSTALL(TARGETS network
-	RUNTIME DESTINATION bin
-)
-

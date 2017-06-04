@@ -1,8 +1,14 @@
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
-SOCKET tcp_client( char *hname, char *sname) 
+#include "tcp_client.h"
+
+int tcp_client( char *hname, char *sname) 
 {
     struct sockaddr_in peer;
-    SOCKET s;
+    int s;
 
     set_address( hname, sname, &peer, "tcp" );
     s = socket( AF_INET, SOCK_STREAM, 0 );

@@ -1,8 +1,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include "skel.h"
 
+#include "macros.h"
+
+extern char *program_name;
 
 void error(int status, int err, char *fmt, ...)
 {

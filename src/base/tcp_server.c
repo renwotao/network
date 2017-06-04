@@ -1,8 +1,15 @@
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
-SOCKET tcp_server( char *hname, char *sname) 
+#include "macros.h"
+#include "tcp_server.h"
+
+int tcp_server( char *hname, char *sname) 
 {
     struct sockaddr_in local;
-    SOCKET s;
+    int s;
     const int on = 1;
 
     set_address( hname, sname, &local, "tcp" );

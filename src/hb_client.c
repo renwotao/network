@@ -1,13 +1,19 @@
-#include "etcp.h"
+#include <sys/select.h>
+#include <arpa/inet.h>
+#include <errno.h>
+
+#include "base/macros.h"
 #include "heartbeat.h"
 
-int main(int argc, int argv)
+char *program_name;
+
+int main(int argc, char **argv)
 {
 	fd_set allfd;
 	fd_set readfd;
 	msg_t msg;
 	struct timeval tv;
-	SOCKET s;
+        int s;
 	int rc;
 	int heartbeats = 0;
 	int cnt = sizeof( msg );
