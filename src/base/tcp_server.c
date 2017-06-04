@@ -1,9 +1,11 @@
-#include <errno.h>
+#include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
 #include "macros.h"
+#include "error.h"
+#include "set_address.h"
 #include "tcp_server.h"
 
 int tcp_server( char *hname, char *sname) 

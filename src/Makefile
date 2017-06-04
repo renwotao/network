@@ -6,12 +6,12 @@ OBJFILES=$(SRCFILES:.c=.o)
 
 all : hb_client hb_server
 
+%.o : %.c
+	$(CC) -c $(CFLAGS) $(INC) $< -o $@
 hb_client : $(OBJFILES) hb_client.o
 	$(CC) $(OBJFILES) $^ -o $@
 hb_server : $(OBJFILES) hb_server.o
 	$(CC) $(OBJFILES) $^ -o $@
-%.o : %.c
-	$(CC) -c $(CFLAGS) $(INC) $< -o $@
 
 .PHONY : clean
 

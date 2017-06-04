@@ -4,6 +4,8 @@
 #include <netinet/in.h>
 
 #include "macros.h"
+#include "error.h"
+#include "set_address.h"
 #include "udp_server.h"
 
 int udp_server(char *hname, char *sname)
