@@ -1,20 +1,21 @@
 CC=gcc
 CFLAGS=
 INC=-I. -I ./base 
-SRCFILES=$(wildcard base/*.c)
-OBJFILES=$(SRCFILES:.c=.o)
+OBJFILES := base/set_address.o \
+	    base/tcp_client.o
+SRC := $(wildcard base/*.c)
+OBJ := $(SRC %.c=%.o)
 
-all : hb_client hb_server
+all : hb_client
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) $(INC) $< -o $@
+	$(CC) -c  $(CFLAGS) $(INC) $< -o $@
 hb_client : $(OBJFILES) hb_client.o
-	$(CC) $(OBJFILES) $^ -o $@
-hb_server : $(OBJFILES) hb_server.o
-	$(CC) $(OBJFILES) $^ -o $@
+	$(CC) $(INC) $^ -o $@
 
-.PHONY : clean
+.PHONY : all clean
 
 clean: 
-	rm -rf $(OBJFILES) hb_client.o hb_server.o
+	@rm -rf $(OBJFILES) hb_client.o hb_server.o
+	@rm -rf hb_client
 

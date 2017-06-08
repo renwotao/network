@@ -1,8 +1,10 @@
 #include <sys/select.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include <stddef.h>
 
 #include "base/macros.h"
+#include "base/tcp_client.h"
 #include "heartbeat.h"
 
 char *program_name;

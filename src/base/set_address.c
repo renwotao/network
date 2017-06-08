@@ -3,6 +3,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <stddef.h>
 
 #include "macros.h"
 #include "error.h"

@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "macros.h"
 
@@ -17,5 +18,5 @@ void error(int status, int err, char *fmt, ...)
     if (err)
         fprintf(stderr, ": %s (%d)\n", strerror(err), err);
     if (status)
-        EXIT(status);
+        exit(status);
 }
