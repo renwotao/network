@@ -1,3 +1,7 @@
+#include <sys/select.h>
+#include <error.h>
+#include <errno.h>
+
 #include "base/macros.h"
 #include "heartbeat.h"
 
@@ -9,8 +13,8 @@ int main(int argc, char **argv)
     fd_set readfd;
     msg_t msg;
     struct timeval tv;
-    SOCKET s;
-    SOCKET s1;
+    int s;
+    int s1;
     int rc;
     int missed_heartbeats = 0;
     int cnt = sizeof(msg);
@@ -37,7 +41,7 @@ int main(int argc, char **argv)
             tv.tv_sec = T2;
             continue;
         }
-        if (!FD_SET(s1, &readfd))
+        if (!FD_ISSET(s1, &readfd))
             error(1, 0, "select returned invalid socket\n");
         rc = recv(s1, (char*)&msg + sizeof(msg) - cnt, 
                 cnt, 0);
@@ -58,14 +62,14 @@ int main(int argc, char **argv)
             case MSG_TYPE2:
                 /* process type2 message */
                 break;
-            case MSG_HEATBEAT:
+            case MSG_HEARTBEAT:
                 rc = send(s1, (char*)&msg, sizeof(msg), 0);
                 if (rc < 0)
                     error(1, errno, "send failure");
                 break;
             default:
                 error(1, 0, "unknown message type (%d) \n",
-                        nhtol(msg.type);
+                        ntohl(msg.type));
         }
     }
     EXIT(0);
