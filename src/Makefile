@@ -1,25 +1,25 @@
-CC=gcc
-CFLAGS=
-INC=-I. 
-HB_CLIENT_OBJ := base/set_address.o \
-	    	base/tcp_client.o 
-HB_SERVER_OBJ := base/set_address.o\
-		base/tcp_server.o
-SRC := $(wildcard base/*.c) 
-OBJ := $(SRC %.c=%.o)
-TARGET := hb_client hb_server
+.PHONY : all clean 
+LIBSRC := $(wildcard base/*.c) 
+LIBOBJ := $(LIBSRC:%.c=%.o)
+SRC := $(wildcard *.c)
+OBJ := $(SRC:%.c=%.o)
 
-.PHONY : all clean
-all : $(TARGET)
+SRCFILES := $(wildcard base/*.c) $(wildcard *.c)
+OBJFILES := $(SRCFILES:%.c=%.o)
+LIB := libnet.a
 
-hb_client : $(HB_CLIENT_OBJ) hb_client.o
-	$(CC) $(INC) $^ -o $@
-hb_server : $(HB_SERVER_OBJ) hb_server.o
-	$(CC) $(INC) $^ -o $@
-%.o : %.c
-	$(CC) -c  $(CFLAGS) $< -o $@
+all : hb_client hb_server 
 
-clean: 
-	@rm -rf $(HB_CLIENT_OBJ) $(HB_SERVER_OBJ) hb_client.o hb_server.o
-	@rm -rf $(TARGET)
+$(OBJ):%.o: %.c
+	gcc -c $< -o $@; echo $@
+$(LIBOBJ):%.o:%.c
+	gcc -c $< -o $@ 
+$(LIB) : $(LIBOBJ) 
+	ar crv $@ $^
+hb_client : hb_client.o $(LIB)
+	gcc $^ -o $@
+hb_server : hb_server.o $(LIB)
+	gcc $^ -o $@
 
+clean :
+	@rm -rf $(OBJ) $(LIBOBJ) libnet.a

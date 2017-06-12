@@ -1,0 +1,30 @@
+CC=gcc
+CFLAGS=
+INC=-I. 
+HB_CLIENT_OBJ := base/set_address.o \
+	    	base/tcp_client.o 
+HB_SERVER_OBJ := base/set_address.o\
+		base/tcp_server.o
+SRC := $(wildcard base/*.c) 
+OBJ := $(SRC:.c=.o)
+#OBJ := $(SRC:%.c=%.o) # 静态模
+
+TARGET := hb_client hb_server 
+
+$(OBJ) :%.o : %.c
+	$(CC) -c  $(CFLAGS) $< -o $@
+libnet.a : $(OBJ)
+	ar rcs $@ $^ 
+
+.PHONY : all clean test
+
+all : $(TARGET)
+
+hb_client : $(HB_CLIENT_OBJ) hb_client.o
+	$(CC) $(INC) $^ -o $@
+hb_server : $(HB_SERVER_OBJ) hb_server.o
+	$(CC) $(INC) $^ -o $@
+clean: 
+	@rm -rf $(HB_CLIENT_OBJ) $(HB_SERVER_OBJ) $(OBJ)  hb_client.o hb_server.o
+	@rm -rf $(TARGET)
+
