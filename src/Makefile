@@ -22,4 +22,4 @@ hb_server : hb_server.o $(LIB)
 	gcc $^ -o $@
 
 clean :
-	@rm -rf $(OBJ) $(LIBOBJ) libnet.a
+	@rm -rf $(OBJ) $(LIBOBJ) $(LIB) hb_client hb_server
