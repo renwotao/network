@@ -7,19 +7,17 @@ OBJ := $(SRC:%.c=%.o)
 SRCFILES := $(wildcard base/*.c) $(wildcard *.c)
 OBJFILES := $(SRCFILES:%.c=%.o)
 LIB := libnet.a
+TARGET := hb_client hb_server
 
-all : hb_client hb_server 
+all : $(TARGET) 
 
 $(OBJ):%.o: %.c
-	gcc -c $< -o $@; echo $@
+	gcc -c $< -o $@
 $(LIBOBJ):%.o:%.c
 	gcc -c $< -o $@ 
 $(LIB) : $(LIBOBJ) 
 	ar crv $@ $^
-hb_client : hb_client.o $(LIB)
-	gcc $^ -o $@
-hb_server : hb_server.o $(LIB)
-	gcc $^ -o $@
-
+$(TARGET) : % : %.o $(LIB)
+	gcc  $^ -o $@
 clean :
-	@rm -rf $(OBJ) $(LIBOBJ) $(LIB) hb_client hb_server
+	@rm -rf $(OBJ) $(LIBOBJ) $(LIB) $(TARGET) 

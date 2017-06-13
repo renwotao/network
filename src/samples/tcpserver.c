@@ -11,8 +11,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "macros.h"
-#include "set_address.h"
+#include "../base/macros.h"
+#include "../base/set_address.h"
 
 char *program_name;
 
@@ -23,8 +23,8 @@ int main(int argc, char **argv)
     char *hname;
     char *sname;
     int peerlen;
-    SOCKET s1;
-    SOCKET s;
+    int s1;
+    int s;
     const int on = 1;
 
     INIT();

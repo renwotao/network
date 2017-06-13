@@ -26,12 +26,13 @@ void set_address(char *hname, char *sname,
                 error(1, 0, "unknown host: %s\n", hname);
             sap->sin_addr = *(struct in_addr *)hp->h_addr;
         }
-    } else 
+    } else { 
         sap->sin_addr.s_addr = htonl(INADDR_ANY);
+    }
     port = strtol(sname, &endptr, 0);
-    if (*endptr == '\0')
+    if (*endptr == '\0') {
         sap->sin_port = htons(port);
-    else {
+    } else {
         sp = getservbyname(sname, protocol);
         if (sp == NULL)
             error(1, 0, "unknown service: %s\n", sname);

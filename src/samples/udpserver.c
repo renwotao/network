@@ -4,9 +4,8 @@
 #include <netinet/in.h>
 #include <string.h>
 
-#include "macros.h"
-#include "set_address.h"
-#include ""
+#include "base/macros.h"
+#include "base/set_address.h"
 
 char *program_name;
 
@@ -14,7 +13,7 @@ int main(int argc, char** argv) {
 	struct sockaddr_in local;
 	char *hname;
 	char *shname;
-	SOCKET s;
+	int s;
 	
 	INIT();
 	if (argc == 2) {
