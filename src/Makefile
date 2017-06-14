@@ -8,8 +8,8 @@ TARGET := hb_client hb_server
 
 all : $(TARGET) 
 
-.c.o:
-	gcc -c $< -o $@
+#.c.o:
+#	gcc -c $< -o $@
 $(LIB) : $(LIBOBJ) 
 	ar crv $@ $^
 $(TARGET) : % : %.o $(LIB)
